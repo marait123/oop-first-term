@@ -13,10 +13,20 @@ enum ActionType //The actions supported (you can add more if needed)
 	DRAW_ELLIPSE,		//Draw Ellipse
 	CHNG_DRAW_CLR,	//Change the drawing color
 	CHNG_FILL_CLR,	//Change the filling color
-	DEL,			//Delete a figure(s)
+
+	A_Black,
+	A_White,   ///stand for action _ white 
+	A_Red,
+	A_Green,
+	A_Blue,
+	CUT,
+	COPY,
+	PASTE,
+	DEL,	//Delete a figure(s)
+	SELECT,
+	LOAD,			//Load a graph from a file
 	SAVE,			//Save the whole graph to a file
 	SAVE_BY_TYPE,	//Save the all the figures that have a specific type
-	LOAD,			//Load a graph from a file
 	EXIT,			//Exit the application
 
 	DRAWING_AREA,	//A click on the drawing area

@@ -13,14 +13,40 @@ enum GUI_MODE	//Graphical user interface mode
 	MODE_PLAY	//Playing mode
 };
 
+enum Color_Choose {            /////this enumeration will be used to define the color choosed by the user for fill or outline \\Marait
+	ITM_Black = 7,
+	ITM_White,
+	ITM_Red,
+	ITM_Green,
+	ITM_Blue
+};
 enum DrawMenuItem //The items of the Draw menu (you should add more items)
 {
 	//Note: Items are ordered here as they appear in menu
 	//If you want to change the menu items order, change the order here
 	ITM_RECT,		//Recangle item in menu
-	
+	ITM_Tria,
 	//TODO: Add more items names here
-
+	ITM_Line,
+	ITM_Elipse,
+	ITM_Rhombus,
+	ITM_Fill,
+	ITM_Outline,
+	////ITM_Black,               ////the cause here for not removint the colores is that i won't to keep the arrange ment of the icons in the tool bar
+	////ITM_White,
+	////ITM_Red,
+	////ITM_Green,
+	////ITM_Blue,
+	ITM_Cut = 12,
+	ITM_Copy,
+	ITM_Paste,
+	ITM_Del,
+	
+	ITM_Select,
+	ITM_Load,
+	ITM_SaveByType,
+	ITM_Save,
+	ITM_Switch,
 	ITM_EXIT,		//Exit item
 	
 	DRAW_ITM_COUNT		//no. of menu items ==> This should be the last line in this enum

@@ -6,7 +6,7 @@ Output::Output()
 	//Initialize user interface parameters
 	UI.InterfaceMode = MODE_DRAW;
 	
-	UI.width = 1250;
+	UI.width = 1500;  //1250
 	UI.height = 650;
 	UI.wx = 5;
 	UI.wy =5;
@@ -14,7 +14,7 @@ Output::Output()
 	
 	UI.StatusBarHeight = 50;
 	UI.ToolBarHeight = 50;
-	UI.MenuItemWidth = 80;
+	UI.MenuItemWidth = 60; //8
 	
 	UI.DrawColor = BLUE;	//Drawing color
 	UI.FillColor = GREEN;	//Filling color
@@ -80,15 +80,39 @@ void Output::CreateDrawToolBar() const
 	//To control the order of these images in the menu, 
 	//reoder them in UI_Info.h ==> enum DrawMenuItem
 	string MenuItemImages[DRAW_ITM_COUNT];
-	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Menu_Rect.jpg";
-	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\Menu_Exit.jpg";
+	MenuItemImages[ITM_RECT] = "images\\MenuItems\\Rectangle.jpg";
+	MenuItemImages[ITM_Tria] = "images\\MenuItems\\Triangle.jpg";
+	MenuItemImages[ITM_Elipse] = "images\\MenuItems\\Elipse.jpg";
+	MenuItemImages[ITM_Line] = "images\\MenuItems\\Line.jpg";
+	MenuItemImages[ITM_Rhombus] = "images\\MenuItems\\Rhombus.jpg";
+	MenuItemImages[ITM_Fill] = "images\\MenuItems\\fill.jpg";
+	MenuItemImages[ITM_Outline] = "images\\MenuItems\\outline.jpg";
+
+	MenuItemImages[ITM_Black] = "images\\MenuItems\\C_Black.jpg";
+	MenuItemImages[ITM_White] = "images\\MenuItems\\O_White.jpg";
+	MenuItemImages[ITM_Blue] = "images\\MenuItems\\R_Blue.jpg";
+	MenuItemImages[ITM_Green] = "images\\MenuItems\\O_Green.jpg";
+	MenuItemImages[ITM_Red] = "images\\MenuItems\\L_Red.jpg";
+	MenuItemImages[ITM_Cut] = "images\\MenuItems\\cut.jpg";
+	MenuItemImages[ITM_Copy] = "images\\MenuItems\\copy.jpg";
+	MenuItemImages[ITM_Del] = "images\\MenuItems\\delete.jpg";
+
+	MenuItemImages[ITM_Select] = "images\\MenuItems\\select.jpg";
+	MenuItemImages[ITM_Switch] = "images\\MenuItems\\switch.jpg";
+	MenuItemImages[ITM_Paste] = "images\\MenuItems\\paste.jpg";
+	MenuItemImages[ITM_Load] = "images\\MenuItems\\upload.jpg";
+
+	MenuItemImages[ITM_Save] = "images\\MenuItems\\save.jpg";
+	MenuItemImages[ITM_SaveByType] = "images\\MenuItems\\save by type.jpg";
+
+	MenuItemImages[ITM_EXIT] = "images\\MenuItems\\exit.jpg";
 
 	//TODO: Prepare images for each menu item and add it to the list
 
 	//Draw menu item one image at a time
 	for(int i=0; i<DRAW_ITM_COUNT; i++)
 		pWind->DrawImage(MenuItemImages[i], i*UI.MenuItemWidth, 0, UI.MenuItemWidth, UI.ToolBarHeight);
-
+	pWind->DrawImage("images\\MenuItems\\exit.jpg", 0, UI.ToolBarHeight, 500, 500);
 
 
 	//Draw a line under the toolbar
@@ -162,6 +186,50 @@ void Output::DrawRect(Point P1, Point P2, GfxInfo RectGfxInfo, bool selected) co
 	
 }
 
+void Output::DrawTria(Point p1, Point p2, POINT p3, GfxInfo RectGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = RectGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 1);
+	drawstyle style;
+	if (RectGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(RectGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+	pWind->DrawTriangle(p1.x, p1.y, p2.x, p2.y, p3.x, p3.y, style);
+
+
+}
+void Output::DrawLine(Point p1, Point p2, GfxInfo RectGfxInfo, bool selected) const
+{
+	color DrawingClr;
+	if (selected)
+		DrawingClr = UI.HighlightColor; //Figure should be drawn highlighted
+	else
+		DrawingClr = RectGfxInfo.DrawClr;
+
+	pWind->SetPen(DrawingClr, 1);
+	drawstyle style;
+	if (RectGfxInfo.isFilled)
+	{
+		style = FILLED;
+		pWind->SetBrush(RectGfxInfo.FillClr);
+	}
+	else
+		style = FRAME;
+
+	pWind->DrawLine(p1.x, p1.y, p2.x, p2.y, FRAME);   ///the style must be frame in order to work or i won't appear so we have to choices whethe to make the gfxIngo notfilled or what i did
+															///Marait
+
+}
 
 //////////////////////////////////////////////////////////////////////////////////////////
 Output::~Output()

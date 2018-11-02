@@ -1,7 +1,6 @@
 #include "GUI\Input.h"
 #include "GUI\Output.h"
-
-//This is a test code to test the Input and Output classes
+#include<string>
 
 int main()
 {
@@ -14,7 +13,6 @@ int main()
 	//Starting the test
 	pOut->PrintMessage("This demo is to test input and output classes, Click anywhere to start the test");
 	pIn->GetPointClicked(x,y);	//Wait for any click
-
 
 	///////////////////////////////////////////////////////////////////////////////////
 	// TEST 1:	
@@ -36,7 +34,7 @@ int main()
 	pIn->GetPointClicked(x,y);	//Wait for any click
 
 	GfxInfo gfxInfo;//to be used with draw function of the class Ouput
-	Point P1, P2;
+	Point P1, P2, P3;
 
 	/// 2.1- Rectangle Test ///
 	/// =================== 
@@ -84,8 +82,15 @@ int main()
 
 	/// 2.2- Line Test ///
 	/// ============== 
-	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");
+	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");    /// i have added this code to draw the line ///Marait 
 	pIn->GetPointClicked(x,y);	//Wait for any click
+	pOut->PrintMessage("Drawing a Line, normal Click tow points ");
+	pIn->GetPointClicked(P1.x, P1.y);
+	pIn->GetPointClicked(P2.x, P2.y);
+	pOut->DrawLine(P1, P2, gfxInfo, false);
+	pOut->PrintMessage("now drawing the line highlighted click anywhere ");
+	pIn->GetPointClicked(x, y);
+	pOut->DrawLine(P1, P2, gfxInfo, true);
 
 	///TODO: Add code to draw Line, Normal and Highlighted
 
@@ -97,6 +102,8 @@ int main()
 	/// =================== 
 	pOut->PrintMessage("Drawing a Triangle, filled/non-filled and Highlighted filled/non-filled,  Click to continue");
 	pIn->GetPointClicked(x,y);	//Wait for any click
+	
+	pOut->PrintMessage("Drawing a Triangle, normal non-filled now Click three points");
 
 	///TODO: Add code to draw Triangle in all possible states
 
@@ -154,7 +161,7 @@ int main()
 	///TODO:  
 	//You must add a case for each action (both Draw mode and Play mode actions)
 	//Add cases for the missing actions below
-	do
+	do                          /////Note : i have almost finished detecting the user actions //Marait 
 	{
 		ActType = pIn->GetUserAction();
 
@@ -181,13 +188,89 @@ int main()
 				break;
 
 		case CHNG_DRAW_CLR:
-				pOut->PrintMessage("Action: Change Figure's drawing color , Click anywhere");
+		{	pOut->PrintMessage("Action: Change Figure's drawing color , choose now any color to change the outline of figure ");
+			ActType = pIn->GetUserAction();
+			switch (ActType)
+			{
+			case A_Black:
+				pOut->PrintMessage("you have choosen the black color");
 				break;
 
-		case CHNG_FILL_CLR:
-				pOut->PrintMessage("Action: Change Figure's Fill color , Click anywhere");
+			case A_White:
+				pOut->PrintMessage("you have choosen the white color");
 				break;
-			
+
+			case A_Red:
+				pOut->PrintMessage("you have choosen the red color");
+				break;
+
+			case A_Blue:
+				pOut->PrintMessage("you have choosen the blue color");
+				break;
+
+			case A_Green: 
+				pOut->PrintMessage("you have choosen the Green color");
+				break;
+			default:
+				break;
+			}
+		break; }
+
+		case CHNG_FILL_CLR:
+		{	pOut->PrintMessage("Action: Change Figure's Fill color , Click the color you want to select ");
+			ActType = pIn->GetUserAction();
+
+			switch (ActType)
+			{
+			case A_Black:
+				pOut->PrintMessage("you have choosen the black color");
+				break;
+
+			case A_White:
+				pOut->PrintMessage("you have choosen the white color");
+				break;
+
+			case A_Red:
+				pOut->PrintMessage("you have choosen the red color");
+				break;
+
+			case A_Blue:
+				pOut->PrintMessage("you have choosen the blue color");
+				break;
+
+			case A_Green:
+				pOut->PrintMessage("you have choosen the Green color");
+				break;
+			default:
+				break;
+			}
+			break; }
+
+		case CUT:
+			pOut->PrintMessage("Action: you have now cut the shape , Click anywhere");
+			break;
+		case COPY:
+			pOut->PrintMessage("Action: you have now copied the shape , Click anywhere");
+			break;
+		case PASTE:
+			pOut->PrintMessage("Action: you have now TO PASTED THE SHAPE  the shape , Click anywhere");
+			break;
+		case DEL:
+			pOut->PrintMessage("Action: you have now deleted the shape , Click anywhere");
+			break;
+		case SELECT:
+			pOut->PrintMessage("Action: you have now selected the shape , Click anywhere");
+			break;
+		case LOAD:
+			pOut->PrintMessage("Action: you are now uploading the shape , Click anywhere");
+			break;
+		case SAVE_BY_TYPE:
+			pOut->PrintMessage("Action: you are now saving by type the shape , Click anywhere");
+			break;
+		case SAVE:
+			pOut->PrintMessage("Action: you are now saving the whole shapes , Click anywhere");
+			break;
+
 		case STATUS:
 				pOut->PrintMessage("Action: a click on the Status Bar, Click anywhere");
 				break;
