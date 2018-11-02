@@ -84,11 +84,11 @@ int main()
 	/// ============== 
 	pOut->PrintMessage("Drawing a Line, normal and Highlighted, Click to continue");    /// i have added this code to draw the line ///Marait 
 	pIn->GetPointClicked(x,y);	//Wait for any click
-	pOut->PrintMessage("Drawing a Line, normal Click tow points ");
+	pOut->PrintMessage("Drawing a Line, normal Click two points ");
 	pIn->GetPointClicked(P1.x, P1.y);
 	pIn->GetPointClicked(P2.x, P2.y);
 	pOut->DrawLine(P1, P2, gfxInfo, false);
-	pOut->PrintMessage("now drawing the line highlighted click anywhere ");
+	pOut->PrintMessage("Drawing a line ==> highlighted , click to highlight ");
 	pIn->GetPointClicked(x, y);
 	pOut->DrawLine(P1, P2, gfxInfo, true);
 
